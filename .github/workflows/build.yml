@@ -22,14 +22,13 @@ jobs:
 
       - name: Copy
         run: |
-          ls 
           mkdir -p ./build/blog/source
           cp ./*.md ./build/blog/source
           ls ./build/blog/source
 
       - name: build blog
         run: |
-          ls
+          ls ./build
           cd ./build 
           chmod +x ink
           ./ink build
