@@ -1,0 +1,53 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.13
+        id: go
+
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Clone build
+        uses: actions/checkout@v2
+        with:
+          path: build
+
+      - name: Copy
+        run: |
+          cp ./*.md ./build/blog/source
+
+      - name: build blog
+        run: |
+          cd build 
+          chmod +x ink
+          ./ink build
+
+      - name: Clone gh-pages
+        uses: actions/checkout@v2
+        with:
+          path: pages  
+
+      - name: push
+        run: |
+          cp ./build/blog/public ./pages
+          cd ./pages
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "new post"
+          git push
+
+         
