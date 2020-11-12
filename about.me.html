@@ -84,21 +84,33 @@
                 </section>
                 
 <div id="disqus_thread"></div>
-<script async>
-    var disqus_config = function () {
-        this.page.url = "https://xmdhs.top";  
-        this.page.identifier = location.pathname;
-    };
-    (function () {
+<script type="text/javascript">
+    function loadDisqus() {
         var d = document, s = d.createElement('script');
         s.src = 'https://xmdhs-1.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
-        Disqus.</a></noscript>
+    }
 
+    var runningOnBrowser = typeof window !== "undefined";
+    var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+    var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+    setTimeout(function () {
+        if (!isBot && supportsIntersectionObserver) {
+            var disqus_observer = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) {
+                    loadDisqus();
+                    disqus_observer.disconnect();
+                }
+            }, { threshold: [0] });
+            disqus_observer.observe(document.getElementById('disqus_thread'));
+        } else {
+            loadDisqus();
+        }
+    }, 1);
+    
+</script>
             </article>
         </article>
         <footer class="footer">
