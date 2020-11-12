@@ -88,13 +88,15 @@
 <div id="gitalk-container"></div>
 <script type="text/javascript">
     var gitalk = new Gitalk({
-        clientID: 'e9e15cce98f0b2fdd860',
-        clientSecret: '73e076f0d0d1f666b750fc6167be5963608f46ab',
+        clientID: '40479ba3406ae2cc26c2',
+        clientSecret: '165f8c95f6f802692ef0c616ba1b2a8ad426482a',
         repo: 'blog',
         owner: 'xxmdhs',
         admin: ['xmdhs'],
-        id: location.pathname
+        id: location.pathname,      
+        proxy : "https://cors.xmdhs.top/https://github.com/login/oauth/access_token"
     })
+
     gitalk.render('gitalk-container')
 </script>
 
