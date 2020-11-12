@@ -22,6 +22,7 @@ jobs:
 
       - name: Copy
         run: |
+          mkdir -p ./build/blog/source
           cp ./*.md ./build/blog/source
 
       - name: build blog
