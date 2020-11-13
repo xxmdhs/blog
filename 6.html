@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xmdhs&#39;s blog">
+<meta name="twitter:description" content="就是一个博客">
+<meta name="twitter:image:src" content="https://avatars0.githubusercontent.com/u/20377726">
+
+<meta property="og:url" content="https://xmdhs.top">
+<meta property="og:title" content="xmdhs&#39;s blog">
+<meta property="og:description" content="就是一个博客">
+<meta property="og:site_name" content="xmdhs&#39;s blog">
+<meta property="og:image" content="https://avatars0.githubusercontent.com/u/20377726">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="xmdhs&#39;s blog">
+<meta itemprop="description" content="就是一个博客">
+<meta itemprop="image" content="https://avatars0.githubusercontent.com/u/20377726">
+
+<link rel="canonical" href="https://xmdhs.top">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="弄一个显示 arcaea ptt 的签名档">
+        <meta name="author" content="xmdhs">
+        <title>弄一个显示 arcaea ptt 的签名档</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="https://avatars0.githubusercontent.com/u/20377726" />
+    xmdhs&#39;s blog
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">弄一个显示 arcaea ptt 的签名档</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(https://avatars0.githubusercontent.com/u/20377726);"></span>
+                    <a class="name" href="/about.me.html">xmdhs</a>
+                    
+                    <span class="date" data-time="1599375360"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><p>说的就是这个</p>
+
+<p><img src="https://i.loli.net/2020/11/13/PCuMiRQj8EVgza2.png" alt="img.png" /></p>
+
+<p>之前弄的一个虽然没啥用，但是能方便我看成绩评价的东西。</p>
+
+<p>如何实现的呢？说起来也是很简单的。</p>
+
+<h2>抓包</h2>
+
+<p>首先得先找到 arcaea 的 api，获取数据才能生成图片嘛。网上并没有找到什么有用的文档，所以就只能自己抓包了。</p>
+
+<p>用来抓包的软件是 httpcanary。因为安卓的某些安全机制，导致无法直接抓包。</p>
+
+<p>软件上的建议是用“平行空间”安装软件，然后进行抓包。但是因为 arcaea 的某些机制还是什么，导致“平行空间”克隆后软件无法使用。</p>
+
+<p>所以我就试着把游戏安装到 virtualxposed，然后尝试抓包 virtualxposed。结果当然是成功了。不过如果有 root 权限或者用 ios 设备，就不用这么麻烦了。</p>
+
+<pre><code>GET /11/compose/aggregate?calls=%5B%7B%20%22endpoint%22%3A%20%22%2Fuser%2Fme%22%2C%20%22id%22%3A%200%20%7D%5D HTTP/1.1
+Accept-Encoding: identity
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Authorization: Bearer LgSB/********
+Platform: android
+AppVersion: 2.6.1c
+i: 2550615
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GM1900 Build/QKQ1.190716.003)
+Host: arcapi.lowiro.com
+Connection: Keep-Alive
+</code></pre>
+
+<p>具体的发送请求抓包下来的数据就是类似这样，不过 api 也是会发生改变的，所以还是得自己去抓包。</p>
+
+<p>这个请求是获取好友列表的数据的。关键的在 Authorization，这个应该是账号相关。</p>
+
+<p>响应的数据是 json，具体示例太长，就放在这个链接里。<a href="https://paste.ubuntu.com/p/5y5NZTJ8JV/">https://paste.ubuntu.com/p/5y5NZTJ8JV/</a></p>
+
+<p>大概其中的字段，猜也能猜出是什么含义吧。对于我要做签名档，有用的部分就是</p>
+
+<pre><code>           &quot;friends&quot;: [
+                {
+                    &quot;is_mutual&quot;: false,
+                    &quot;is_char_uncapped_override&quot;: false,
+                    &quot;is_char_uncapped&quot;: true,
+                    &quot;is_skill_sealed&quot;: false,
+                    &quot;rating&quot;: 961,
+                    &quot;join_date&quot;: 1572538347498,
+                    &quot;character&quot;: 2,
+                    &quot;recent_score&quot;: [
+                        {
+                            &quot;rating&quot;: 0,
+                            &quot;modifier&quot;: 2,
+                            &quot;time_played&quot;: 1587250285320,
+                            &quot;health&quot;: -1,
+                            &quot;best_clear_type&quot;: 0,
+                            &quot;clear_type&quot;: 0,
+                            &quot;miss_count&quot;: 476,
+                            &quot;near_count&quot;: 0,
+                            &quot;perfect_count&quot;: 0,
+                            &quot;shiny_perfect_count&quot;: 0,
+                            &quot;score&quot;: 0,
+                            &quot;difficulty&quot;: 0,
+                            &quot;song_id&quot;: &quot;pragmatism&quot;
+                        }
+                    ],
+                    &quot;name&quot;: &quot;xmdhs&quot;,
+                    &quot;user_id&quot;: 2476615
+                }
+            ],
+</code></pre>
+
+<p>其中就是好友的一些基本信息，和最后一次打的歌了，具体的数值的对应关系，可以看我下面放出的签名档的源码。</p>
+
+<p>所以要获取信息，还得创建一个小号，然后添加你的大号为好友。</p>
+
+<p>然后要做的就很简单了，随便用个语言，画图，填字，生成图片然后弄个 http 的服务器就行了。</p>
+
+<h2>开源</h2>
+
+<p>一共用了两种语言去写过，Java 的懒得维护而且占内存太大，没用框架估计性能不如 Go，就没去管了。Go 写的是可以用的。</p>
+
+<p>不过 java 的其中的一些注释还是有用的，比如</p>
+
+<pre><code>            public String name;//名字
+            public String rating;//ptt
+            public List&lt;Recent&gt; recent_score;
+            public static class Recent{
+                public String clear_type; //通过类型？ 0 大概是没通过, 1 是普通，5 是困难 ,3 是 p ，简单是 4，full recall 是 2.
+                public String miss_count; //lost
+                public String near_count; //far
+                public String perfect_count; //pure
+                public String shiny_perfect_count; //大 p
+                public String score; //分数
+                public String rating; //评价
+                public String difficulty; //难度，0 为过去，1为现在，2 为未来。
+                public String song_id; //曲目
+                public Long time_played; //上次游玩时间，为 unix 时间戳。（毫秒
+            }
+</code></pre>
+
+<p>不过嘛，这些已经是旧的了，新的可以看 go 版本的源码。比如 <a href="https://github.com/xmdhs/arcimg/blob/master/arcimg/json.go">https://github.com/xmdhs/arcimg/blob/master/arcimg/json.go</a></p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(https://avatars0.githubusercontent.com/u/20377726);"></div>
+                    <a class="name" href="/about.me.html">xmdhs</a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/5.html">在 blogger 上插入代码</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/7.html">对于博客的一点点折腾</a>
+                    </section>
+                    
+                </section>
+                
+<script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script><script>anchors.add();</script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    function loadDisqus() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xmdhs-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    }
+
+    var runningOnBrowser = typeof window !== "undefined";
+    var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+    var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+    setTimeout(function () {
+        if (!isBot && supportsIntersectionObserver) {
+            var disqus_observer = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) {
+                    loadDisqus();
+                    disqus_observer.disconnect();
+                }
+            }, { threshold: [0] });
+            disqus_observer.observe(document.getElementById('disqus_thread'));
+        } else {
+            loadDisqus();
+        }
+    }, 1);
+    
+</script>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        xmdhs&#39;s blog ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="https://github.com/InkProject/ink" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

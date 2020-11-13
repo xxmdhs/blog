@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>xmdhs&#39;s blog</title>
   <id>https://xmdhs.top</id>
-  <updated>2020-11-12T17:45:14Z</updated>
+  <updated>2020-11-13T05:49:23Z</updated>
   <subtitle>就是一个博客</subtitle>
   <link href="https://xmdhs.top"></link>
   <author>
@@ -12,6 +12,86 @@
     <updated>2020-11-13T00:39:00+08:00</updated>
     <id>tag:xmdhs.top,2020-11-13:/1.html</id>
     <link href="https://xmdhs.top/1.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
+  <entry>
+    <title>discuz 通用论坛用户积分爬取排序</title>
+    <updated>2020-11-05T16:34:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-11-05:/2.html</id>
+    <link href="https://xmdhs.top/2.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
+  <entry>
+    <title>如何滥用 github actions</title>
+    <updated>2020-11-03T22:41:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-11-03:/3.html</id>
+    <link href="https://xmdhs.top/3.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
+  <entry>
+    <title>bug10 的奇妙 bug，设置无法打开</title>
+    <updated>2020-09-23T19:09:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-09-23:/4.html</id>
+    <link href="https://xmdhs.top/4.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
+  <entry>
+    <title>在 blogger 上插入代码</title>
+    <updated>2020-09-06T22:38:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-09-06:/5.html</id>
+    <link href="https://xmdhs.top/5.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
+  <entry>
+    <title>弄一个显示 arcaea ptt 的签名档</title>
+    <updated>2020-09-06T14:56:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-09-06:/6.html</id>
+    <link href="https://xmdhs.top/6.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
+  <entry>
+    <title>对于博客的一点点折腾</title>
+    <updated>2020-09-03T16:39:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-09-03:/7.html</id>
+    <link href="https://xmdhs.top/7.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
+  <entry>
+    <title>简单的弄一个站内搜索</title>
+    <updated>2020-09-01T17:01:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-09-01:/8.html</id>
+    <link href="https://xmdhs.top/8.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
+  <entry>
+    <title>第一篇博文</title>
+    <updated>2020-09-01T08:37:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-09-01:/9.html</id>
+    <link href="https://xmdhs.top/9.html" rel="alternate"></link>
     <summary type="html"></summary>
     <author>
       <name>xmdhs</name>
