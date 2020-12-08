@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>xmdhs&#39;s blog</title>
   <id>https://xmdhs.top</id>
-  <updated>2020-11-13T09:43:22Z</updated>
+  <updated>2020-12-08T10:53:16Z</updated>
   <subtitle>就是一个博客</subtitle>
   <link href="https://xmdhs.top"></link>
   <author>
     <name>xmdhs&#39;s blog</name>
   </author>
+  <entry>
+    <title>简单完成 java 版微软账号的部分登录流程</title>
+    <updated>2020-12-08T18:51:00+08:00</updated>
+    <id>tag:xmdhs.top,2020-12-08:/10.html</id>
+    <link href="https://xmdhs.top/10.html" rel="alternate"></link>
+    <summary type="html"></summary>
+    <author>
+      <name>xmdhs</name>
+    </author>
+  </entry>
   <entry>
     <title>迁移博客后的第一篇博文</title>
     <updated>2020-11-13T00:39:00+08:00</updated>

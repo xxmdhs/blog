@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="迁移博客后的第一篇博文">
+        <meta name="description" content="简单完成 java 版微软账号的部分登录流程">
         <meta name="author" content="xmdhs">
-        <title>迁移博客后的第一篇博文</title>
+        <title>简单完成 java 版微软账号的部分登录流程</title>
     </head>
     <body>
         <article class="container">
@@ -65,60 +65,35 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">迁移博客后的第一篇博文</h1>
+                <h1 class="title">简单完成 java 版微软账号的部分登录流程</h1>
                 <section class="info">
                     <span class="avatar" style="background-image: url(https://avatars0.githubusercontent.com/u/20377726);"></span>
                     <a class="name" href="/about.me.html">xmdhs</a>
                     
-                    <span class="date" data-time="1605199140"><span class="from"></span></span>
+                    <span class="date" data-time="1607424660"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>今天用了大半天的时间去迁移博客。从 blogspot 迁移到 github。</p>
+                <article class="content"><p>众所周知，mojang 决定迁移账号到微软那了，并且最近购买游戏也需要使用微软账号。这也导致了使用微软账号购买的玩家，无法使用第三方启动器登录游戏。</p>
 
-<p>为什么要迁移呢？主要也是今天看到 google photos 将不再免费无限储存了。而 blogspot 上传图片得上传到 google photos，再加上怕 google 哪天把 blogspot 砍了，所以就迁移了。</p>
+<p>大概是一天前，wiki.vg 上更新了<a href="https://wiki.vg/Microsoft_Authentication_Scheme">新的微软身份认证的流程</a>，所以我就折腾了下其中前半部分的认证。</p>
 
-<h2>博客的构架</h2>
+<p>和之前所使用的认证系统不同，这次要求在浏览器中登录账号。这无疑增加了复杂度，至少对于我弄的命令行启动器来说，就变得有点麻烦了。</p>
 
-<p>目前是部署在 github 上，使用 github pages。</p>
+<p>我选用的方法是 DevTools Protocol，使用这个<a href="https://github.com/go-rod/rod">开源项目</a>，只需要安装了 chrome 就能用，无论是 windows 还是 linux。</p>
 
-<p>使用 <a href="https://github.com/InkProject/ink">ink</a> 渲染生成静态页面。</p>
+<h2>使用方法</h2>
 
-<p>使用 cloudflare 作为 cdn。</p>
+<p>先到<a href="https://github.com/xmdhs/msauth/actions?query=workflow%3AGo">这</a>下载编译好的二进制文件，然后运行。</p>
 
-<p>使用 github actions 自动把提交的 md 使用 ink 弄成 html 页面，然后推送到 github 上。</p>
+<p>之后会弹出一个浏览器的窗口，在其中登录就行。登录完后，会返回一串 json，类似</p>
 
-<h2>为什么是 ink</h2>
+<pre><code>{&quot;ok&quot;:true,&quot;err&quot;:&quot;&quot;,&quot;code&quot;:&quot;code&quot;}
+</code></pre>
 
-<p>因为 ink 是 Go 写的，而我比较熟悉 Go。我知道 hugo 也是用 Go 写的，但是实在是太复杂了，而且配置有点麻烦。</p>
+<p>如果 ok 是 true 也就代表获取成功了。之后就可以继续接下来的<a href="https://wiki.vg/Microsoft_Authentication_Scheme#Authorization_Code_-.3E_Authorization_Token">一些步骤</a></p>
 
-<p>虽然目前 ink 似乎停止维护了，但是也没有什么比较严重的 bug，真有，我大概也能自己修吧。</p>
-
-<p>说起了几年前，我也用过 ink 来搭建博客过的。</p>
-
-<p>我现在使用的 ink 是自己从 github 的最新版本中，用 Go 1.15.4 编译的。所以编译后的二进制文件要小一点。另外不知道为什么，有一些地方无法通过编译，于是就自己修改了下。</p>
-
-<h2>github actions 是如何设置的</h2>
-
-<p>可以直接来这里看 <a href="https://github.com/xxmdhs/blog/blob/main/.github/workflows/build.yml">https://github.com/xxmdhs/blog/blob/main/.github/workflows/build.yml</a></p>
-
-<p>具体而言，就是利用 actions/checkout 把项目内各个分支 clone 下来，然后用 cp 命令把需要的文件放到需要的位置，然后构建，推送就完事。</p>
-
-<p>总共用了三个分支，main 储存 markdown 文档，增加博文时，直接在这里新建文件，然后推送到 github 上就行。</p>
-
-<p>build 分支顾名思义，就是用了构建页面用的分支，里面包含了 ink 的配置文件，和博客的模板。</p>
-
-<p>gh-pages 里放的就是最终弄完的 html 文件了。</p>
-
-<h2>选用的评论系统</h2>
-
-<p>花了我大半天的时间就主要花在选择评论系统上。</p>
-
-<p>gitalk 以前用过，很好用。但是我现在部署后，总是报 404，看相关的 issues 也没有给出一个具体的解决的方法，那就只好弃用了。</p>
-
-<p>尝试了下 telegram 的 comments，试了半天，就是没弄成。</p>
-
-<p>所以最后还是用上了 Disqus，国内的看不到就看不到吧，反正没指望谁看这个博客。</p>
+<p>因为这些步骤也就是只需要 post 就好，我这里就不完成这些了。</p>
 </article>
                 <section class="author">
                     <div class="avatar" style="background-image: url(https://avatars0.githubusercontent.com/u/20377726);"></div>
@@ -127,15 +102,10 @@
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">上篇文章</div>
-                        <a class="link" href="/10.html">简单完成 java 版微软账号的部分登录流程</a>
-                    </section>
                     
-                    
-                    <section class="nav next more">
+                    <section class="nav next">
                         <div class="head">下篇文章</div>
-                        <a class="link" href="/2.html">discuz 通用论坛用户积分爬取排序</a>
+                        <a class="link" href="/1.html">迁移博客后的第一篇博文</a>
                     </section>
                     
                 </section>
