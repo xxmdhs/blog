@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>xmdhs&#39;s blog</title>
   <id>https://xmdhs.top</id>
-  <updated>2020-12-21T14:40:59Z</updated>
+  <updated>2020-12-21T14:46:36Z</updated>
   <subtitle>就是一个博客</subtitle>
   <link href="https://xmdhs.top"></link>
   <author>
     <name>xmdhs&#39;s blog</name>
   </author>
   <entry>
-    <title>简单完成 java 版微软账号的部分登录流程</title>
+    <title>使用 freebsd 开 java 版服务器</title>
     <updated>2020-12-21T22:38:00+08:00</updated>
     <id>tag:xmdhs.top,2020-12-21:/11.html</id>
     <link href="https://xmdhs.top/11.html" rel="alternate"></link>
